@@ -9,3 +9,4 @@ TestResult.xml
 src/GlobalInfo.cs
 *.testsettings
 *.vsmdi
+*.suo
