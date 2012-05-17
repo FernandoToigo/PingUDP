@@ -23,8 +23,8 @@
   <Target Name="GenerateAssemblyInfo">
     <AssemblyInfo CodeLanguage="CS"
                OutputFile="$(SourceDir)\GlobalInfo.cs"
-               AssemblyCompany="Elemar JR"
-               AssemblyProduct="FluentIL"
+               AssemblyCompany="Fernando Toigo"
+               AssemblyProduct="Ping UDP"
                AssemblyTrademark=""
                ComVisible="false"
                CLSCompliant="false"
