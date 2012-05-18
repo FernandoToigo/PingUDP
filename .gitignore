@@ -10,3 +10,4 @@ src/GlobalInfo.cs
 *.testsettings
 *.vsmdi
 *.suo
+.nuget
