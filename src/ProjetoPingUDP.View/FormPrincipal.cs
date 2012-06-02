@@ -14,8 +14,7 @@ namespace ProjetoPingUDP.View
 {
     public partial class FormPrincipal : Form
     {
-        GerenciadorPing gerenciadorServidor;
-        GerenciadorPing gerenciadorCliente;
+        ServidorPingUdp servidor;
         public delegate void AdicionarLogPingDelegate(string log);
         public AdicionarLogPingDelegate adicionarLogPingDelegate;
 
@@ -39,37 +38,21 @@ namespace ProjetoPingUDP.View
 
         private void EnviarPings(string ipDestino, int portaDestino)
         {
-            try
-            {
-                if (gerenciadorCliente == null)
-                    gerenciadorCliente = new GerenciadorPing(8522);
+            PingUdp ping = new PingUdp();
+            ping.IPDestino = ipDestino;
+            ping.PortaDestino = portaDestino;
+            ping.NumeroPacotes = (int)numericUpDownNumeroPacotes.Value;
+            ping.OnLog += new PingUdpLogEventHandler(ping_OnLog);
+            var resultado = ping.Executar();
+            var array = resultado.ToString().Split('\n');
 
-                for (int i = 0; i < 10; i++)
-                {
-                    Ping ping = new Ping();
-                    ping.NumeroSequencia = i;
-                    ping.IPDestino = ipDestino;
-                    ping.PortaDestino = portaDestino;
-                    ping.Estado = EstadoPing.NaoEnviado;
+            this.Invoke(adicionarLogPingDelegate, new object[] { array[0] });
+            this.Invoke(adicionarLogPingDelegate, new object[] { array[1] });
+        }
 
-                    try
-                    {
-                        this.Invoke(adicionarLogPingDelegate, new object[] { string.Format("Executando Ping. Número de Sequência: {0}", ping.NumeroSequencia) });
-
-                        Ping pingResposta = gerenciadorCliente.ExecutarPing(ping);
-
-                        this.Invoke(adicionarLogPingDelegate, new object[] { string.Format("Ping respondido. Número de Sequência: {0} Data envio: {1}", pingResposta.NumeroSequencia, pingResposta.DataEnvio.ToString("dd/MM/yyyy HH:mm:ss")) });
-                    }
-                    catch (PingSemRespostaException ex)
-                    {
-                        this.Invoke(adicionarLogPingDelegate, new object[] { "Ping sem resposta." });
-                    }
-                }
-            }
-            catch (SocketException ex)
-            {
-                MessageBox.Show("Não foi possível executar o ping!\n" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        void ping_OnLog(object sender, LogEventArgs e)
+        {
+            this.Invoke(adicionarLogPingDelegate, new object[] { e.Log });
         }
 
         private void AdicionarLogPing(string log)
@@ -82,8 +65,9 @@ namespace ProjetoPingUDP.View
             try
             {
                 int portaServidor = int.Parse(textBoxPortaServidor.Text);
-                gerenciadorServidor = new GerenciadorPing(portaServidor);
-                gerenciadorServidor.IniciarServidor();
+                servidor = new ServidorPingUdp();
+                servidor.Porta = portaServidor;
+                servidor.Iniciar();
 
                 buttonIniciarServidor.Enabled = false;
                 buttonPararServidor.Enabled = true;
@@ -106,11 +90,11 @@ namespace ProjetoPingUDP.View
 
         private void PararServidor()
         {
-            if (gerenciadorServidor != null)
+            if (servidor != null)
             {
                 buttonPararServidor.Enabled = false;
 
-                gerenciadorServidor.PararEntradaPacotes();
+                servidor.Parar();
 
                 buttonIniciarServidor.Enabled = true;
             }

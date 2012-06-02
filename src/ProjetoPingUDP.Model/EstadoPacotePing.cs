@@ -5,11 +5,11 @@ using System.Text;
 
 namespace ProjetoPingUDP.Model
 {
-    public enum EstadoPing
+    public enum EstadoPacotePing
     {
-        NaoEnviado,
-        AguardandoResposta,
-        SemResposta,
-        Sucesso
+        NaoEnviado = 1,
+        Enviado = 2,
+        Recebido = 4,
+        Perdido = 8
     }
 }

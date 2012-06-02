@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GerenciadorPing.cs" />
-    <Compile Include="GerenciadorUdp.cs" />
-    <Compile Include="Ping.cs" />
-    <Compile Include="PingSemRespostaException.cs" />
+    <Compile Include="EstadoPacotePing.cs" />
+    <Compile Include="PacotePing.cs" />
+    <Compile Include="PingUdp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EstadoPing.cs" />
+    <Compile Include="ResultadoPing.cs" />
+    <Compile Include="ServidorPingUdp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -41,8 +41,11 @@
             this.buttonIniciarServidor = new System.Windows.Forms.Button();
             this.textBoxPortaServidor = new System.Windows.Forms.TextBox();
             this.labelPortaServidor = new System.Windows.Forms.Label();
+            this.numericUpDownNumeroPacotes = new System.Windows.Forms.NumericUpDown();
+            this.labelNumeroPacotes = new System.Windows.Forms.Label();
             this.groupBoxCliente.SuspendLayout();
             this.groupBoxServidor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumeroPacotes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCliente
@@ -50,6 +53,8 @@
             this.groupBoxCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxCliente.Controls.Add(this.labelNumeroPacotes);
+            this.groupBoxCliente.Controls.Add(this.numericUpDownNumeroPacotes);
             this.groupBoxCliente.Controls.Add(this.listBoxLogPing);
             this.groupBoxCliente.Controls.Add(this.buttonExecutarPing);
             this.groupBoxCliente.Controls.Add(this.textBoxPortaDestino);
@@ -94,7 +99,7 @@
             // labelPortaDestino
             // 
             this.labelPortaDestino.AutoSize = true;
-            this.labelPortaDestino.Location = new System.Drawing.Point(18, 56);
+            this.labelPortaDestino.Location = new System.Drawing.Point(6, 56);
             this.labelPortaDestino.Name = "labelPortaDestino";
             this.labelPortaDestino.Size = new System.Drawing.Size(32, 13);
             this.labelPortaDestino.TabIndex = 2;
@@ -110,7 +115,7 @@
             // labelIPDestino
             // 
             this.labelIPDestino.AutoSize = true;
-            this.labelIPDestino.Location = new System.Drawing.Point(18, 30);
+            this.labelIPDestino.Location = new System.Drawing.Point(6, 30);
             this.labelIPDestino.Name = "labelIPDestino";
             this.labelIPDestino.Size = new System.Drawing.Size(17, 13);
             this.labelIPDestino.TabIndex = 0;
@@ -179,6 +184,32 @@
             this.labelPortaServidor.TabIndex = 6;
             this.labelPortaServidor.Text = "Porta";
             // 
+            // numericUpDownNumeroPacotes
+            // 
+            this.numericUpDownNumeroPacotes.Location = new System.Drawing.Point(56, 80);
+            this.numericUpDownNumeroPacotes.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownNumeroPacotes.Name = "numericUpDownNumeroPacotes";
+            this.numericUpDownNumeroPacotes.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDownNumeroPacotes.TabIndex = 6;
+            this.numericUpDownNumeroPacotes.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // labelNumeroPacotes
+            // 
+            this.labelNumeroPacotes.AutoSize = true;
+            this.labelNumeroPacotes.Location = new System.Drawing.Point(6, 83);
+            this.labelNumeroPacotes.Name = "labelNumeroPacotes";
+            this.labelNumeroPacotes.Size = new System.Drawing.Size(46, 13);
+            this.labelNumeroPacotes.TabIndex = 7;
+            this.labelNumeroPacotes.Text = "Pacotes";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,6 +224,7 @@
             this.groupBoxCliente.PerformLayout();
             this.groupBoxServidor.ResumeLayout(false);
             this.groupBoxServidor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumeroPacotes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -212,6 +244,8 @@
         private System.Windows.Forms.ListBox listBoxLogServidor;
         private System.Windows.Forms.Button buttonIniciarServidor;
         private System.Windows.Forms.Button buttonPararServidor;
+        private System.Windows.Forms.Label labelNumeroPacotes;
+        private System.Windows.Forms.NumericUpDown numericUpDownNumeroPacotes;
 
     }
 }
